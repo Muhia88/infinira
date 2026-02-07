@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;500;700&family=Syncopate:wght@400;700&display=swap');
+
+:root {
+  --bg-dark: #050505;
+  --bg-card: #0a0a0a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  
+  /* Metallic Copper/Rose Gold Gradients */
+  --accent-copper: #b8734d;
+  --accent-gold: #eebb90;
+  --accent-rose: #d69e83;
+  
+  /* Hard metallic gradient for text */
+  --gradient-copper: linear-gradient(
+    135deg, 
+    #b8734d 0%, 
+    #eebb90 25%, 
+    #d69e83 50%, 
+    #b8734d 75%, 
+    #8c5235 100%
+  );
+
+  /* Subtle background gradient */
+  --gradient-dark: linear-gradient(to bottom, #050505, #0f0f0f);
+
+  --glass-bg: rgba(15, 15, 15, 0.6);
+  --glass-border: rgba(238, 187, 144, 0.15);
+  
+  --font-heading: 'Syncopate', sans-serif; /* For the wide futuristic headers */
+  --font-subheading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: var(--font-subheading);
+}
+
+/* Utilities */
+.container {
+  max-width: 1400px; /* Wider container for the expansive look */
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.text-gradient {
+  background: var(--gradient-copper);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.section-padding {
+  padding: 8rem 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-copper);
+}
