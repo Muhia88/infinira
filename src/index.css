@@ -2,34 +2,21 @@
 
 :root {
   --bg-dark: #050505;
-  --bg-card: #0a0a0a;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  
-  /* Metallic Copper/Rose Gold Gradients */
-  --accent-copper: #b8734d;
-  --accent-gold: #eebb90;
-  --accent-rose: #d69e83;
-  
-  /* Hard metallic gradient for text */
-  --gradient-copper: linear-gradient(
-    135deg, 
-    #b8734d 0%, 
-    #eebb90 25%, 
-    #d69e83 50%, 
-    #b8734d 75%, 
-    #8c5235 100%
-  );
+  --bg-card: #0f0f0f;
 
-  /* Subtle background gradient */
-  --gradient-dark: linear-gradient(to bottom, #050505, #0f0f0f);
+  /* Exact colors picked from images */
+  --copper-light: #ffdab9;
+  --copper-mid: #b8734d;
+  --copper-dark: #8c5235;
+  --copper-glow: rgba(184, 115, 77, 0.5);
+  --grey-gear: #4a4a4a;
 
-  --glass-bg: rgba(15, 15, 15, 0.6);
-  --glass-border: rgba(238, 187, 144, 0.15);
-  
-  --font-heading: 'Syncopate', sans-serif; /* For the wide futuristic headers */
-  --font-subheading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* Gradients */
+  --metallic-gradient: linear-gradient(135deg, var(--copper-light) 0%, var(--copper-mid) 40%, var(--copper-dark) 100%);
+  --metallic-text: linear-gradient(to bottom, #fff 0%, var(--copper-light) 25%, var(--copper-mid) 100%);
+
+  --font-heading: 'Syncopate', sans-serif;
+  --font-body: 'Outfit', sans-serif;
 }
 
 * {
@@ -40,80 +27,92 @@
 
 body {
   background-color: var(--bg-dark);
-  color: var(--text-primary);
+  color: #ffffff;
   font-family: var(--font-body);
   overflow-x: hidden;
   line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-heading);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 1rem;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+/* --- Metallic Text Effect (Image 2) --- */
+.text-metallic {
+  background: var(--metallic-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 4px 15px rgba(184, 115, 77, 0.3);
+}
+
+.text-copper {
+  color: var(--copper-mid);
+  text-shadow: 0 0 15px var(--copper-glow);
+}
+
+/* --- Hero Floor Grid (Image 2) --- */
+.perspective-grid {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  bottom: -40%;
+  left: -50%;
+  background-image:
+    linear-gradient(rgba(184, 115, 77, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 115, 77, 0.4) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(600px) rotateX(60deg);
+  mask-image: linear-gradient(to bottom, transparent 5%, black 40%, transparent 100%);
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* --- Glowing Nodes (Image 3) --- */
+.node-active {
+  box-shadow: 0 0 25px var(--copper-glow), inset 0 0 15px var(--copper-mid);
+  border: 2px solid var(--copper-light);
+  background: radial-gradient(circle at center, var(--copper-mid), #1a0f0a);
+  transform: scale(1.1);
+}
+
+.node-inactive {
+  background: #111;
+  border: 1px solid #444;
+}
+
+/* --- Gears (Image 4) --- */
+.gear-glow {
+  color: var(--copper-light);
+  filter: drop-shadow(0 0 10px var(--copper-mid));
+}
+
+.glass-panel {
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(184, 115, 77, 0.2);
+  border-left: 4px solid var(--copper-mid);
+}
+
+/* Buttons */
+.btn-outline {
+  border: 1px solid var(--copper-mid);
+  color: #ddd;
+  padding: 12px 36px;
+  background: rgba(0, 0, 0, 0.5);
+  font-family: var(--font-body);
+  letter-spacing: 1px;
+  border-radius: 6px;
   transition: all 0.3s ease;
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  font-family: var(--font-subheading);
-}
-
-/* Utilities */
-.container {
-  max-width: 1400px; /* Wider container for the expansive look */
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.text-gradient {
-  background: var(--gradient-copper);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  animation: shine 5s linear infinite;
-}
-
-@keyframes shine {
-  to {
-    background-position: 200% center;
-  }
-}
-
-.glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-}
-
-.section-padding {
-  padding: 8rem 0;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-dark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-copper);
+.btn-outline:hover {
+  border-color: var(--copper-light);
+  box-shadow: 0 0 20px rgba(184, 115, 77, 0.4);
+  color: white;
 }

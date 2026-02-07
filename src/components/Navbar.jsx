@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Infinity } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -23,13 +23,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'glass py-4' : 'bg-transparent py-6'
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/80 backdrop-blur-md border-b border-[#b8734d]/20 py-4' : 'bg-transparent py-6'
+        }`}
     >
-      <div className="container flex justify-between items-center">
-        <a href="#" className="text-2xl font-bold font-heading tracking-wider">
-          Infinira<span className="text-gradient">.</span>
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        <a href="#" className="flex items-center gap-2 text-2xl font-bold font-heading tracking-wider group">
+          <Infinity className="text-[#b8734d] group-hover:text-[#ffdab9] transition-colors" size={32} />
+          <span className="text-white">Infinira</span><span className="text-[#b8734d]">.</span>
         </a>
 
         {/* Desktop Menu */}
@@ -38,7 +38,7 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm uppercase tracking-widest hover:text-[var(--accent-copper)] transition-colors"
+              className="text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#b8734d] transition-colors"
             >
               {link.name}
             </a>
@@ -47,7 +47,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white hover:text-[var(--accent-copper)]"
+          className="md:hidden text-white hover:text-[#b8734d]"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -60,14 +60,14 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute top-full left-0 w-full glass flex flex-col items-center py-8 space-y-6 md:hidden"
+              className="absolute top-full left-0 w-full bg-black/95 border-b border-[#b8734d]/30 flex flex-col items-center py-8 space-y-6 md:hidden"
             >
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-lg uppercase tracking-widest hover:text-[var(--accent-copper)]"
+                  className="text-lg uppercase tracking-widest text-white hover:text-[#b8734d]"
                 >
                   {link.name}
                 </a>
